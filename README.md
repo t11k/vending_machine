@@ -4,7 +4,9 @@ A Vending Machine simulator written as a weekend practice problem.
 
 ## Running
 
-Clone the repository, install dependencies by running ``bundle install`` and finally execute simulator:
+Requires Ruby >= 2.6 to run.
+
+Clone the repository, install dependencies by running `bundle install` and execute the simulator:
 
     $ ./exe/vending_machine
 
