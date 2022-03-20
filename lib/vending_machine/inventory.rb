@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'interface/handler'
+require_relative 'inventory/manager'
 
 module VendingMachine
-  module Interface
+  module Inventory
   end
 end

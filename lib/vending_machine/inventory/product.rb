@@ -7,7 +7,7 @@ module VendingMachine
 
       def initialize(name:, price:)
         @name = name
-        @price = price
+        @price = Money::Amount.new(price)
       end
 
       def key
@@ -15,7 +15,7 @@ module VendingMachine
       end
 
       def to_s
-        "#{name} ($#{'%.2f' % price})"
+        "#{name} (#{price})"
       end
     end
   end

@@ -22,7 +22,7 @@ RSpec.describe VendingMachine::Inventory::Manager do
     end
   end
 
-  describe '#available_products' do
+  describe '#available?(product)' do
     let(:config) do
       [
         { name: "Product 1", price: 1, quantity: 1 },
@@ -31,19 +31,22 @@ RSpec.describe VendingMachine::Inventory::Manager do
       ]
     end
 
-    subject { manager.available_products }
+    subject { manager.available?(product) }
 
-    it 'returns an array of Product objects' do
-      expect(subject).to be_a(Array)
-      expect(subject).to all(be_a(VendingMachine::Inventory::Product))
+    context 'when product is in stock' do
+      let(:product) do
+        VendingMachine::Inventory::Product.new(name: 'Product 1', price: 1)
+      end
+
+      it { is_expected.to be true }
     end
 
-    it 'returns only products with quantity > 0' do
-      result = subject
+    context 'when product is out of stock' do
+      let(:product) do
+        VendingMachine::Inventory::Product.new(name: 'Product 2', price: 2)
+      end
 
-      expect(result.length).to eq(2)
-      expect(result[0].name).to eq('Product 1')
-      expect(result[1].name).to eq('Product 3')
+      it { is_expected.to be false }
     end
   end
 

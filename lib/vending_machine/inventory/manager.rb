@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'vending_machine/inventory/product'
+require_relative 'product'
 
 module VendingMachine
   module Inventory
@@ -8,7 +8,7 @@ module VendingMachine
       class Error < StandardError; end
       class NotAvailable < Error; end
 
-      attr_reader :products
+      include Enumerable
 
       def initialize(config)
         @products = {}
@@ -22,13 +22,16 @@ module VendingMachine
         end
       end
 
+      def products
+        @products.values
+      end
+
       def quantity(product)
         @quantities[product.key]
       end
 
-      def available_products
-        keys = @quantities.select { |_, quantity| quantity > 0 }.keys
-        @products.values_at(*keys)
+      def available?(product)
+        @quantities[product.key] > 0
       end
 
       def draw(product)
