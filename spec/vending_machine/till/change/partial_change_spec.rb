@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 #
-require 'vending_machine/change/coins'
+require 'vending_machine/till/change/coins'
 
-RSpec.describe VendingMachine::Change::PartialChange do
+RSpec.describe VendingMachine::Till::Change::PartialChange do
   let(:coins) { double(:coins) }
   let(:change) { double(:change) }
   let(:amount) { 0 }
