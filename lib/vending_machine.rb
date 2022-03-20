@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "vending_machine/version"
+require 'vending_machine/inventory/manager'
 require 'vending_machine/change/calculate'
 
 module VendingMachine
