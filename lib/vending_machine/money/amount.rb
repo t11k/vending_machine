@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'delegate'
+
 module VendingMachine
   module Money
     class Amount < SimpleDelegator
