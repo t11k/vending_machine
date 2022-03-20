@@ -24,6 +24,8 @@ module VendingMachine
       end
 
       def call
+        @prompt.say("\nInsert coins (press ESC to abort):\n\n")
+
         while missing_amount > 0
           @collected_coins.add(collect_coin)
         end
@@ -32,11 +34,15 @@ module VendingMachine
       private
 
       def missing_amount
-        @target_amount - @collected_coins.total
+        @target_amount - collected_amount
+      end
+
+      def collected_amount
+        @collected_coins.total
       end
 
       def collect_coin
-        @prompt.select("Insert Coin (missing: #{missing_amount})", OPTIONS)
+        @prompt.select("Amount: #{collected_amount} (missing: #{missing_amount})", OPTIONS)
       end
     end
   end

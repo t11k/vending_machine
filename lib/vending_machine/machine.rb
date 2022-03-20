@@ -13,6 +13,7 @@ module VendingMachine
     end
 
     def run
+      interface.hello
       loop do
         product = interface.select_product
         coins = interface.collect_coins(product.price)
@@ -32,6 +33,8 @@ module VendingMachine
           end
         end
       end
+    rescue TTY::Reader::InputInterrupt
+      interface.goodby
     end
   end
 end

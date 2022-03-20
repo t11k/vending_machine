@@ -14,7 +14,7 @@ module VendingMachine
       end
 
       def select_product
-        @prompt.select("Select a product") do |menu|
+        @prompt.select("\nSelect a product") do |menu|
           @inventory.products.each do |product|
             menu.choice product, product, disabled: ('(out of stock)' unless @inventory.available?(product))
           end
@@ -32,7 +32,7 @@ module VendingMachine
       end
 
       def deliver(product)
-        @prompt.say("Here is your product:")
+        @prompt.say("\nHere is your product:")
         @prompt.ok(product.name)
       end
 
@@ -43,6 +43,15 @@ module VendingMachine
       def change_failed(coins)
         @prompt.error("Aborted: Could not draw a change.")
         return_coins(coins)
+      end
+
+      def hello
+        @prompt.say("\nWelcome to our Vending Machine!")
+        @prompt.warn("To shut down the machine use: ctrl-c")
+      end
+
+      def goodby
+        @prompt.say("\n\nGOODBYE!\n\n")
       end
 
       private

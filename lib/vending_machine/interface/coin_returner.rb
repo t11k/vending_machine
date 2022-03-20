@@ -14,7 +14,7 @@ module VendingMachine
       def call
         return if @coins.empty?
 
-        @prompt.say(@message)
+        @prompt.say("\n#{@message}")
         @coins.each do |coin|
           coin.count.times { @prompt.ok(coin) }
         end
