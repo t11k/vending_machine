@@ -16,6 +16,10 @@ module VendingMachine
           @amount == 0
         end
 
+        def exceeded?
+          @amount < 0
+        end
+
         def applicable_coins
           @applicable_coins ||= @coins.lteq(@amount)
         end

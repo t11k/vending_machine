@@ -27,6 +27,8 @@ module VendingMachine
         def min_change(partial_change)
           if partial_change.complete?
             return partial_change
+          elsif partial_change.exceeded?
+            return nil
           else
             partial_change
               .applicable_coins
